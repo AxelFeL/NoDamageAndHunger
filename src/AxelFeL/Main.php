@@ -17,11 +17,13 @@ class Main extends PluginBase implements Listener{
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
     
-    public function onDamage(EntityDamageEvent $event){
-        $event->cancel(\true);
+    public function onDamage(EntityDamageEvent $event):void {
+        if(!$event->getEntity() instanceof Player) return;
+        
+        $event->cancel();
     }
     
-    public function onHunger(PlayerExhaustEvent $event){
-        $event->cancel(\true);
+    public function onHunger(PlayerExhaustEvent $event):void {
+        $event->cancel();
     }
 }
